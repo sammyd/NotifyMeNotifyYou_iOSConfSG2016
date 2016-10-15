@@ -28,15 +28,16 @@ class NotificationService: UNNotificationServiceExtension {
   var contentHandler: ((UNNotificationContent) -> Void)?
   var bestAttemptContent: UNMutableNotificationContent?
   
-  override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler:(UNNotificationContent) -> Void) {
+  
+  override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
     self.contentHandler = contentHandler
     bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
     
     if let bestAttemptContent = bestAttemptContent {
       if let attachmentString = bestAttemptContent.userInfo["attachment-url"] as? String,
-        attachmentUrl = URL(string: attachmentString)
+        let attachmentUrl = URL(string: attachmentString)
       {
-        let session = URLSession(configuration: URLSessionConfiguration.default())
+        let session = URLSession(configuration: URLSessionConfiguration.default)
         let attachmentDownloadTask = session.downloadTask(with: attachmentUrl, completionHandler: { (url, response, error) in
           if let error = error {
             print("Error downloading attachment: \(error.localizedDescription)")

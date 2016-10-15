@@ -25,7 +25,7 @@ import UserNotifications
 
 class NotificationTableViewController: UITableViewController {
   
-  private var tableSectionProviders = [NotificationTableSection : TableSectionProvider]()
+  fileprivate var tableSectionProviders = [NotificationTableSection : TableSectionProvider]()
   
   @IBAction func handleRefresh(_ sender: UIRefreshControl) {
     loadNotificationData { 
@@ -39,7 +39,7 @@ class NotificationTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    UNUserNotificationCenter.current().requestAuthorization([.alert, .sound]) { (granted, error) in
+    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (granted, error) in
       if granted {
         self.loadNotificationData()
       } else {
@@ -47,7 +47,7 @@ class NotificationTableViewController: UITableViewController {
       }
     }
     
-    NotificationCenter.default().addObserver(self, selector: #selector(handleNotificationReceived), name: userNotificationReceivedNotificationName, object: .none)
+    NotificationCenter.default.addObserver(self, selector: #selector(handleNotificationReceived), name: userNotificationReceivedNotificationName, object: .none)
   }
   
   // MARK: - Table view data source
@@ -58,7 +58,7 @@ class NotificationTableViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     guard let notificationTableSection = NotificationTableSection(rawValue: section),
-      sectionProvider = tableSectionProviders[notificationTableSection]
+      let sectionProvider = tableSectionProviders[notificationTableSection]
       else { return 0 }
     
     return sectionProvider.numberOfCells
@@ -68,8 +68,8 @@ class NotificationTableViewController: UITableViewController {
     var cell = tableView.dequeueReusableCell(withIdentifier: "standardCell", for: indexPath)
     
     if let tableSection = NotificationTableSection(rawValue: indexPath.section),
-      sectionProvider = tableSectionProviders[tableSection],
-      cellProvider = sectionProvider.cellProvider(at: indexPath.row) {
+      let sectionProvider = tableSectionProviders[tableSection],
+      let cellProvider = sectionProvider.cellProvider(at: indexPath.row) {
       cell = cellProvider.prepare(cell: cell)
     }
     
@@ -78,7 +78,7 @@ class NotificationTableViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     guard let notificationTableSection = NotificationTableSection(rawValue: section),
-      sectionProvider = tableSectionProviders[notificationTableSection]
+      let sectionProvider = tableSectionProviders[notificationTableSection]
       else { return .none }
     
     return sectionProvider.name
@@ -93,7 +93,7 @@ extension NotificationTableViewController {
     loadNotificationData()
   }
   
-  private func loadNotificationData(callback: (() -> ())? = .none) {
+  fileprivate func loadNotificationData(callback: (() -> ())? = .none) {
     let notificationCentre = UNUserNotificationCenter.current()
     
     let group = DispatchGroup()
@@ -139,8 +139,8 @@ extension NotificationTableViewController {
 }
 
 extension NotificationTableViewController: ConfigurationViewControllerDelegate {
-  override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let destVC = segue.destinationViewController as? ConfigurationViewController {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let destVC = segue.destination as? ConfigurationViewController {
       destVC.delegate = self
     }
   }
@@ -163,8 +163,8 @@ extension NotificationTableViewController {
   }
   
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-    if let section = NotificationTableSection(rawValue: indexPath.section)
-      where editingStyle == .delete && section == .pending {
+    if let section = NotificationTableSection(rawValue: indexPath.section),
+      editingStyle == .delete && section == .pending {
       
       if let provider = tableSectionProviders[.pending] as? PendingNotificationsTableSectionProvider {
         let request = provider.requests[indexPath.row]

@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
     // Override point for customization after application launch.
     configureUserNotifications()
     
@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
-  private func configureUserNotifications() {
+  fileprivate func configureUserNotifications() {
     UNUserNotificationCenter.current().delegate = self
     
     let starAction = UNNotificationAction(identifier: "star", title: "🌟 star my cuddle 🌟", options: [])
@@ -51,28 +51,28 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     let category = UNNotificationCategory(identifier: newCuddlePixCategoryName,
                                           actions: [starAction, dismissAction],
-                                          minimalActions: [starAction, dismissAction],
                                           intentIdentifiers: [],
                                           options: [])
     
     UNUserNotificationCenter.current().setNotificationCategories([category])
   }
   
-  func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void) {
-    NotificationCenter.default().post(name: userNotificationReceivedNotificationName, object: .none)
+  
+  func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    NotificationCenter.default.post(name: userNotificationReceivedNotificationName, object: .none)
     completionHandler(.alert)
   }
   
-  func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: () -> Void) {
+  func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
     print("Received Notification")
-    NotificationCenter.default().post(name: userNotificationReceivedNotificationName, object: .none)
+    NotificationCenter.default.post(name: userNotificationReceivedNotificationName, object: .none)
     completionHandler()
   }
   
 }
 
 extension AppDelegate {
-  func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+  func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
     print("Registration for remote notifications failed")
     print(error.localizedDescription)
   }

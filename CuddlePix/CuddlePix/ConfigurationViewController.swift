@@ -32,7 +32,7 @@ class ConfigurationViewController: UIViewController {
   
   @IBAction func handleScheduleTapped(_ sender: UIButton) {
     guard let selectedString = cuddlePixCount.titleForSegment(at: cuddlePixCount.selectedSegmentIndex),
-      selectedNumber = Int(selectedString)
+      let selectedNumber = Int(selectedString)
       else {
         delegate?.configurationCompleted(newNotifications: false)
         return
@@ -55,7 +55,7 @@ class ConfigurationViewController: UIViewController {
 
 
 extension ConfigurationViewController {
-  private func scheduleRandomNotifications(number: Int, completion: () -> ()) {
+  fileprivate func scheduleRandomNotifications(number: Int, completion: @escaping () -> ()) {
     guard number > 0  else {
       completion()
       return
@@ -77,9 +77,9 @@ extension ConfigurationViewController {
     
   }
   
-  private func scheduleRandomNotification(inSeconds: TimeInterval, completion: () -> ()) {
+  fileprivate func scheduleRandomNotification(inSeconds: TimeInterval, completion: @escaping () -> ()) {
     let randomImageName = "hug\(arc4random_uniform(12) + 1)"
-    let imageURL = Bundle.main().urlForResource(randomImageName, withExtension: "jpg")!
+    let imageURL = Bundle.main.url(forResource: randomImageName, withExtension: "jpg")!
     
     let attachment = try! UNNotificationAttachment(identifier: randomImageName, url: imageURL, options: .none)
     

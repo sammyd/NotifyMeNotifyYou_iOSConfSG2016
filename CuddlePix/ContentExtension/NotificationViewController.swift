@@ -31,19 +31,19 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
   func didReceive(_ notification: UNNotification) {
     if let attachment = notification.request.content.attachments.first {
       if attachment.url.startAccessingSecurityScopedResource() {
-        imageView.image = UIImage(contentsOfFile: attachment.url.path!)
+        imageView.image = UIImage(contentsOfFile: attachment.url.path)
         attachment.url.stopAccessingSecurityScopedResource()
       }
     }
   }
   
-  func didReceive(_ response: UNNotificationResponse, completionHandler completion: (UNNotificationContentExtensionResponseOption) -> Void) {
+  func didReceive(_ response: UNNotificationResponse, completionHandler completion: @escaping (UNNotificationContentExtensionResponseOption) -> Void) {
     if response.actionIdentifier == "star" {
       showStars()
     }
     
     let time = DispatchTime.now() + DispatchTimeInterval.milliseconds(2000)
-    DispatchQueue.main.after(when: time) {
+    DispatchQueue.main.asyncAfter(deadline: time) {
       completion(.dismissAndForwardAction)
     }
   }  
@@ -52,12 +52,8 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
 
 
 
-
-
-
-
 extension NotificationViewController {
-  private func showStars() {
+  fileprivate func showStars() {
     let particleEmitter = CAEmitterLayer()
     
     particleEmitter.emitterPosition = CGPoint(x: view.frame.width / 2.0, y: -25)
