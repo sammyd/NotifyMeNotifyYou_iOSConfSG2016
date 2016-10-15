@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1qc-E0-Gok">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11103.10"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--cuddlePix-->
+        <scene sceneID="W2L-dB-XEZ">
+            <objects>
+                <tableViewController title="cuddlePix" id="ivK-zC-GNa" customClass="NotificationTableViewController" customModule="CuddlePix" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VDZ-GI-CLG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="standardCell" textLabel="1V1-Be-dym" detailTextLabel="kue-1e-2P8" style="IBUITableViewCellStyleSubtitle" id="5ef-Ls-pbQ">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5ef-Ls-pbQ" id="XJZ-7x-OCt">
+                                    <frame key="frameInset" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1V1-Be-dym">
+                                            <frame key="frameInset" minX="15" minY="4" width="34" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kue-1e-2P8">
+                                            <frame key="frameInset" minX="15" minY="25" width="44" height="15"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ivK-zC-GNa" id="Iyw-Dv-RYd"/>
+                            <outlet property="delegate" destination="ivK-zC-GNa" id="ONr-Ak-AA7"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="cuddlePix" id="pej-c3-1CQ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="qGP-y8-gU8">
+                            <connections>
+                                <segue destination="09G-F6-2er" kind="show" id="q2H-Jr-W3S"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="OtK-6b-gzc">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="handleRefresh:" destination="ivK-zC-GNa" eventType="valueChanged" id="QWV-t9-Moy"/>
+                        </connections>
+                    </refreshControl>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Xq-jG-OP5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1816.8" y="-261.31934032983509"/>
+        </scene>
+        <!--Schedule New-->
+        <scene sceneID="nog-m7-RwN">
+            <objects>
+                <viewController title="Schedule New" id="09G-F6-2er" customClass="ConfigurationViewController" customModule="CuddlePix" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ADo-hJ-nZY"/>
+                        <viewControllerLayoutGuide type="bottom" id="oui-cf-BLR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cho-j6-jEw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="6WB-tt-0nb">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dl-hs-BgJ">
+                                        <attributedString key="attributedText">
+                                            <fragment content="Schedule ">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.058513942880000003" green="0.31111027689999998" blue="0.40635734559999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <font key="NSFont" size="23" name="HelveticaNeue-Thin"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="n">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.058513942880000003" green="0.31111027689999998" blue="0.40635734559999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <font key="NSFont" size="23" name="HelveticaNeue-ThinItalic"/>
+                                                    <font key="NSOriginalFont" size="23" name="HelveticaNeue-ThinItalic"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" new cuddlePix in the next hour, where ">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.058513942880000003" green="0.31111027689999998" blue="0.40635734559999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <font key="NSFont" size="23" name="HelveticaNeue-Thin"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="n">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.058513942880000003" green="0.31111027689999998" blue="0.40635734559999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <font key="NSFont" size="23" name="HelveticaNeue-ThinItalic"/>
+                                                    <font key="NSOriginalFont" size="23" name="HelveticaNeue-ThinItalic"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" is:">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.058513942880000003" green="0.31111027689999998" blue="0.40635734559999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <font key="NSFont" size="23" name="HelveticaNeue-Thin"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Tu3-SQ-jK0">
+                                        <segments>
+                                            <segment title="0"/>
+                                            <segment title="1"/>
+                                            <segment title="2"/>
+                                            <segment title="5"/>
+                                            <segment title="10"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rGV-bo-m6V">
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Schedule"/>
+                                        <connections>
+                                            <action selector="handleScheduleTapped:" destination="09G-F6-2er" eventType="touchUpInside" id="nO4-v9-lDN"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GlT-am-Kce">
+                                        <attributedString key="attributedText">
+                                            <fragment content="Schedule a single cuddlePix to be delivered in the next 5 seconds:">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.058513942880000003" green="0.31111027689999998" blue="0.40635734559999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <font key="NSFont" size="23" name="HelveticaNeue-Thin"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifm-Ma-Lgq">
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="cuddle me now!"/>
+                                        <connections>
+                                            <action selector="handleCuddleMeNow:" destination="09G-F6-2er" eventType="touchUpInside" id="Ox2-aq-1dO"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6WB-tt-0nb" firstAttribute="centerX" secondItem="cho-j6-jEw" secondAttribute="centerX" id="WR5-rZ-4ml"/>
+                            <constraint firstItem="6WB-tt-0nb" firstAttribute="width" secondItem="cho-j6-jEw" secondAttribute="width" multiplier="0.9" id="fkE-Rn-0Q9"/>
+                            <constraint firstItem="6WB-tt-0nb" firstAttribute="top" secondItem="ADo-hJ-nZY" secondAttribute="bottom" constant="20" id="gY4-3N-Je6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cuddlePixCount" destination="Tu3-SQ-jK0" id="3Ru-bQ-Khk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aX6-pO-pMt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2751" y="-261"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="KSa-h1-ANb">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1qc-E0-Gok" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="fm6-6W-jQR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.10980392160000001" green="0.64313725489999995" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="21"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ivK-zC-GNa" kind="relationship" relationship="rootViewController" id="kk2-FA-TUh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8DX-gG-CVE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="877.60000000000002" y="-261.31934032983509"/>
+        </scene>
+    </scenes>
+    <color key="tintColor" red="0.85490196939999996" green="0.25098040700000002" blue="0.4784313738" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+</document>
