@@ -94,12 +94,12 @@ extension ConfigurationViewController {
     
     let request = UNNotificationRequest(identifier: randomImageName, content: content, trigger: trigger)
     
-    UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
+    UNUserNotificationCenter.current().add(request) { (error) in
       if let error =  error {
         print(error)
       }
       completion()
-    })
+    }
 
   }
 }

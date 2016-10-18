@@ -6,6 +6,7 @@
 ### Sam Davies [@iwantmyrealname](https://twitter.com/iwantmyrealname)
 
 ---
+![](images/sam.png)
 
 # [fit] hi,
 # [fit] i'm sam
@@ -15,9 +16,11 @@
 # What are user notifications?
 
 ---
+![](images/control.jpg)
 
-# Not to be confused with
-# Notification centre
+# [fit] Not to be confused with
+# [fit] notification
+# [fit] centre
 
 ---
 ![](images/olde.jpg)
@@ -36,8 +39,10 @@
 # The `UserNotifications` Framework
 
 - Fixes the issues
-
-
+- Query for permission status
+- Management of local notifications
+- Custom UI
+- Mutate push notifications
 
 ---
 
@@ -49,15 +54,174 @@
 
 
 ---
+# Authorisation
+
+```swift
+UNUserNotificationCenter
+  .current()
+  .requestAuthorization(options: [.alert, .sound]) {
+    (granted, error) in
+    if granted {
+      self.loadNotificationData()
+    } else {
+      print(error?.localizedDescription)
+    }
+}
+```
+
+---
+![](images/clock.jpg)
+
+# [fit] Scheduling
+
+---
 ![](images/clock.jpg)
 
 # Scheduling
+
+- Push notifications
+- Time interval
+- Calendar
+- Geofence
+
+---
+# Notification Content
+
+```swift
+let attachment =
+  try! UNNotificationAttachment(identifier: randomImageName,
+                                url: imageURL, options: .none)
+    
+  let content = UNMutableNotificationContent()
+  content.title = "New cuddlePix!"
+  content.subtitle = "What a treat"
+  content.attachments = [attachment]
+  content.body = "Cheer yourself up with a hug 🤗"
+  content.categoryIdentifier = newCuddlePixCategoryName
+```
+
+---
+# Triggers & Requests
+
+```swift
+let trigger =
+  UNTimeIntervalNotificationTrigger(timeInterval: inSeconds,
+                                    repeats: false)
+    
+  let request =
+    UNNotificationRequest(identifier: randomImageName,
+                          content: content, trigger: trigger)
+  
+  UNUserNotificationCenter
+    .current()
+    .add(request, withCompletionHandler: {
+      (error) in
+      if let error = error {
+        print(error)
+      }
+      completion()
+  })
+```
 
 
 ---
 ![](images/desk.jpg)
 
+# [fit] Management
+
+
+---
 # Management
+
+```swift
+open class UNUserNotificationCenter : NSObject {
+  
+  ...
+
+  // SETTINGS
+  open func getNotificationSettings(
+    completionHandler: @escaping (UNNotificationSettings) -> ())
+
+  ...
+
+```
+
+---
+# Management
+
+```swift
+  ...
+
+  // PENDING
+  open func getPendingNotificationRequests(
+    completionHandler: @escaping ([UNNotificationRequest]) -> ())
+
+  open func removePendingNotificationRequests(
+    withIdentifiers identifiers: [String])
+
+  open func removeAllPendingNotificationRequests()
+
+  ...
+```
+
+---
+# Management
+
+```swift
+  ...
+
+  // DELIVERED
+  open func getDeliveredNotifications(
+    completionHandler: @escaping ([UNNotification]) -> ())
+
+  open func removeDeliveredNotifications(
+    withIdentifiers identifiers: [String])
+
+  open func removeAllDeliveredNotifications()
+}
+
+
+```
+
+---
+![](images/delivery.jpeg)
+
+# [fit] In-App Delivery
+
+---
+# In-App Delivery
+
+```swift
+UNUserNotificationCenter.current().delegate = self
+```
+
+Implement the delegate method:
+
+```swift
+func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Swift.Void {
+  completionHandler(.alert)
+}
+```
+
+---
+# In-App Delivery
+
+```swift
+UNUserNotificationCenter.current().delegate = self
+```
+
+Implement the delegate method:
+
+```swift
+func userNotificationCenter(
+  _ center: UNUserNotificationCenter,
+  willPresent notification: UNNotification,
+  withCompletionHandler completionHandler:
+    @escaping (UNNotificationPresentationOptions) -> ()) {
+
+      completionHandler(.alert)
+}
+```
 
 
 ---
@@ -69,13 +233,12 @@
 ---
 ![](images/paint.jpg)
 
-# Custom UI
+# [fit] Custom UI
 
+---
+![](images/interaction.jpeg)
 
---
-![](images/)
-
-# Interactivity
+# [fit] Interactivity
 
 
 ---
