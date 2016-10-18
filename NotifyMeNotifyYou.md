@@ -236,16 +236,73 @@ func userNotificationCenter(
 # [fit] Custom UI
 
 ---
+![](images/paint.jpg)
+
+# Custom UI
+
+- New extension type in iOS 10
+- Provided a storyboard & a view controller
+- `UNNotificationContentExtension` provides notification
+
+---
+# Custom UI
+
+
+- Notification contains request
+- Attachments aren't readily available to your extension
+
+```swift
+func didReceive(_ notification: UNNotification) {
+  if let attachment = notification.request.content.attachments.first {
+    if attachment.url.startAccessingSecurityScopedResource() {
+      imageView.image = UIImage(contentsOfFile: attachment.url.path)
+      attachment.url.stopAccessingSecurityScopedResource()
+    }
+  }
+}
+```
+
+---
 ![](images/interaction.jpeg)
 
 # [fit] Interactivity
 
+---
+# Interactivity
+
+```swift
+func didReceive(
+  _ response: UNNotificationResponse,
+  completionHandler completion:
+  @escaping (UNNotificationContentExtensionResponseOption) -> ()) {
+
+    if response.actionIdentifier == "star" {
+      showStars()
+    }
+    
+    let time = DispatchTime.now() + DispatchTimeInterval.milliseconds(2000)
+    DispatchQueue.main.asyncAfter(deadline: time) {
+      completion(.dismissAndForwardAction)
+    }
+} 
+```
+
 
 ---
+![](images/blackboard.jpg)
+
 # [fit] demo
 
 
 ---
+![](images/push.jpeg)
+
+# [fit] Intercepting
+# [fit] __Push__ Notifications
+
+---
+![](images/push.jpeg)
+
 # Intercepting push notifications
 
 - via the Service Extension point
