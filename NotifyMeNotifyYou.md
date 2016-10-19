@@ -275,7 +275,10 @@ func userNotificationCenter(
 func didReceive(_ notification: UNNotification) {
   if let attachment = notification.request.content.attachments.first {
     if attachment.url.startAccessingSecurityScopedResource() {
-      imageView.image = UIImage(contentsOfFile: attachment.url.path)
+      let imageData = try? Data(contentsOf: attachment.url)
+      if let imageData = imageData {
+        imageView.image = UIImage(data: imageData)
+      }
       attachment.url.stopAccessingSecurityScopedResource()
     }
   }
