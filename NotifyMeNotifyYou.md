@@ -12,11 +12,14 @@
 # [fit] i'm sam
 
 ---
+![](images/user.jpeg)
 
-# What are user notifications?
+# [fit] What are
+# [fit] user
+# [fit] notifications?
 
 ---
-![](images/control.jpg)
+![original](images/control.jpg)
 
 # [fit] Not to be confused with
 # [fit] notification
@@ -325,7 +328,7 @@ func didReceive(
 
 - via the Service Extension point
 - Think of it as a `.filter()` operation
-- Provided with notification request - return content
+- Provided with notification request—return content
 - Limited time to perform processing
 
 ---
@@ -383,14 +386,26 @@ override func serviceExtensionTimeWillExpire() {
 ---
 ![](images/switch.jpg)
 
-# Make the switch
+# [fit] Make
+# [fit] the
+# [fit] switch
 
-## _well, if you can_
+## _if you can_
 
-- iOS 10 only
+---
 
-[github.com/sammyd](github.com/sammyd)
-[@iwantmyrealname](twitter.com/iwantmyrealname)
+![](images/link.jpeg)
+
+# [fit] 📷 Links
+
+videos.raywenderlich.com
+
+developer.apple.com/wwdc16/707
+developer.apple.com/wwdc16/708
+developer.apple.com/reference/usernotifications
+
+github.com/sammyd
+@iwantmyrealname
 
 
 
