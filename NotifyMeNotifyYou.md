@@ -6,7 +6,7 @@
 ### Sam Davies [@iwantmyrealname](https://twitter.com/iwantmyrealname)
 
 ---
-![](images/sam.png)
+![original](images/sam.jpg)
 
 # [fit] hi,
 # [fit] i'm sam
@@ -48,8 +48,16 @@
 
 ![](images/security.jpg)
 
+# [fit] Authorisation
+
+---
+
+![](images/security.jpg)
+
 # Authorisation
 
+- Very similar to other iOS authorisation requests
+- Doesn't require __Info.plist__ usage string
 - Still have to request for remote notifications
 
 
@@ -68,6 +76,28 @@ UNUserNotificationCenter
     }
 }
 ```
+
+---
+
+# Authorisation
+
+```swift
+open class UNUserNotificationCenter : NSObject {
+  
+  ...
+
+  open func getNotificationSettings(completionHandler:
+    @escaping (UNNotificationSettings) -> ())
+
+  ...
+  
+}
+```
+
+---
+![](images/blackboard.jpg)
+
+# [fit] demo
 
 ---
 ![](images/clock.jpg)
@@ -92,12 +122,13 @@ let attachment =
   try! UNNotificationAttachment(identifier: randomImageName,
                                 url: imageURL, options: .none)
     
-  let content = UNMutableNotificationContent()
-  content.title = "New cuddlePix!"
-  content.subtitle = "What a treat"
-  content.attachments = [attachment]
-  content.body = "Cheer yourself up with a hug 🤗"
-  content.categoryIdentifier = newCuddlePixCategoryName
+let content = UNMutableNotificationContent()
+content.title = "New cuddlePix!"
+content.subtitle = "What a treat"
+content.attachments = [attachment]
+content.body = "Cheer yourself up with a hug 🤗"
+content.categoryIdentifier = newCuddlePixCategoryName
+//content.threadIdentifier = "my-conversation-thread"
 ```
 
 ---
@@ -108,19 +139,19 @@ let trigger =
   UNTimeIntervalNotificationTrigger(timeInterval: inSeconds,
                                     repeats: false)
     
-  let request =
-    UNNotificationRequest(identifier: randomImageName,
-                          content: content, trigger: trigger)
-  
-  UNUserNotificationCenter
-    .current()
-    .add(request, withCompletionHandler: {
-      (error) in
-      if let error = error {
-        print(error)
-      }
-      completion()
-  })
+let request =
+  UNNotificationRequest(identifier: randomImageName,
+                        content: content, trigger: trigger)
+
+UNUserNotificationCenter
+  .current()
+  .add(request, withCompletionHandler: {
+    (error) in
+    if let error = error {
+      print(error)
+    }
+    completion()
+})
 ```
 
 
@@ -136,20 +167,6 @@ let trigger =
 ```swift
 open class UNUserNotificationCenter : NSObject {
   
-  ...
-
-  // SETTINGS
-  open func getNotificationSettings(
-    completionHandler: @escaping (UNNotificationSettings) -> ())
-
-  ...
-
-```
-
----
-# Management
-
-```swift
   ...
 
   // PENDING
@@ -298,7 +315,8 @@ func didReceive(
 ![](images/push.jpeg)
 
 # [fit] Intercepting
-# [fit] __Push__ Notifications
+# [fit] __Push__
+# [fit] Notifications
 
 ---
 ![](images/push.jpeg)
@@ -307,6 +325,46 @@ func didReceive(
 
 - via the Service Extension point
 - Think of it as a `.filter()` operation
+- Provided with notification request - return content
+- Limited time to perform processing
+
+---
+# Content augmentation
+
+```swift
+override func didReceive(_ request: UNNotificationRequest,
+  withContentHandler contentHandler:
+    @escaping (UNNotificationContent) -> Void) {
+  
+  self.contentHandler = contentHandler
+  bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
+  
+  if let bestAttemptContent = bestAttemptContent {
+    if let attachmentString = bestAttemptContent.userInfo["attachment-url"] as? String,
+      let attachmentUrl = URL(string: attachmentString)
+    {
+      // Do some downloading
+      ...
+      let attachment = try! UNNotificationAttachment(identifier: attachmentString,
+        url: url, options: [UNNotificationAttachmentOptionsTypeHintKey : kUTTypePNG])
+      bestAttemptContent.attachments = [attachment]
+      contentHandler(bestAttemptContent)
+    }
+  }
+}
+```
+
+---
+# Handling timeout
+
+```swift
+override func serviceExtensionTimeWillExpire() {
+  if let contentHandler = contentHandler,
+     let bestAttemptContent = bestAttemptContent {
+    contentHandler(bestAttemptContent)
+  }
+}
+```
 
 
 ---
