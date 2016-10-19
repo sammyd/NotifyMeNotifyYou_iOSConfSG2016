@@ -74,7 +74,6 @@ extension ConfigurationViewController {
     group.notify(queue: DispatchQueue.main) { 
       completion()
     }
-    
   }
   
   fileprivate func scheduleRandomNotification(inSeconds: TimeInterval, completion: @escaping () -> ()) {
