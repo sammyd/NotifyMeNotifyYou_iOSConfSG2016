@@ -1,0 +1,12 @@
+{
+  "aps": {
+    "alert": {
+      "title": "New cuddlePix!",
+      "subtitle": "From your friend ",
+      "body": "Cheer yourself up with this remote hug 🤗"
+    },
+    "category":"newCuddlePix",
+    "mutable-content": 1,
+  },
+  "attachment-url": "https://wolverine.raywenderlich.com/books/i10t/notifications/i10t-feature.png"
+}

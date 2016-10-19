@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		221395F41D1BDE54005D2D8D /* Data+HexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221395F31D1BDE54005D2D8D /* Data+HexString.swift */; };
+		221395FD1D1BDFB1005D2D8D /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221395FC1D1BDFB1005D2D8D /* NotificationService.swift */; };
+		221396011D1BDFB1005D2D8D /* ServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 221395FA1D1BDFB1005D2D8D /* ServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		221396061D1BDFEF005D2D8D /* SampleRemoteCuddle.apns in Resources */ = {isa = PBXBuildFile; fileRef = 221396051D1BDFEF005D2D8D /* SampleRemoteCuddle.apns */; };
 		221948AD1D17E7B400E9E4F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221948AC1D17E7B400E9E4F6 /* AppDelegate.swift */; };
 		221948B21D17E7B400E9E4F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 221948B01D17E7B400E9E4F6 /* Main.storyboard */; };
 		221948B41D17E7B400E9E4F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 221948B31D17E7B400E9E4F6 /* Assets.xcassets */; };
@@ -38,6 +41,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		221395FF1D1BDFB1005D2D8D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 221948A11D17E7B400E9E4F6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 221395F91D1BDFB1005D2D8D;
+			remoteInfo = ServiceExtension;
+		};
 		2242FF901D19896800D4ED0F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 221948A11D17E7B400E9E4F6 /* Project object */;
@@ -54,6 +64,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				221396011D1BDFB1005D2D8D /* ServiceExtension.appex in Embed App Extensions */,
 				2242FF921D19896800D4ED0F /* ContentExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -64,6 +75,10 @@
 /* Begin PBXFileReference section */
 		221395F31D1BDE54005D2D8D /* Data+HexString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+HexString.swift"; sourceTree = "<group>"; };
 		221395F51D1BDEC1005D2D8D /* CuddlePix.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CuddlePix.entitlements; sourceTree = "<group>"; };
+		221395FA1D1BDFB1005D2D8D /* ServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		221395FC1D1BDFB1005D2D8D /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		221395FE1D1BDFB1005D2D8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		221396051D1BDFEF005D2D8D /* SampleRemoteCuddle.apns */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SampleRemoteCuddle.apns; sourceTree = "<group>"; };
 		221948A91D17E7B400E9E4F6 /* CuddlePix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CuddlePix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		221948AC1D17E7B400E9E4F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		221948B11D17E7B400E9E4F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -97,6 +112,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		221395F71D1BDFB1005D2D8D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		221948A61D17E7B400E9E4F6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -124,11 +146,22 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
+		221395FB1D1BDFB1005D2D8D /* ServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				221395FC1D1BDFB1005D2D8D /* NotificationService.swift */,
+				221395FE1D1BDFB1005D2D8D /* Info.plist */,
+				221396051D1BDFEF005D2D8D /* SampleRemoteCuddle.apns */,
+			);
+			path = ServiceExtension;
+			sourceTree = "<group>";
+		};
 		221948A01D17E7B400E9E4F6 = {
 			isa = PBXGroup;
 			children = (
 				221948AB1D17E7B400E9E4F6 /* CuddlePix */,
 				2242FF891D19896800D4ED0F /* ContentExtension */,
+				221395FB1D1BDFB1005D2D8D /* ServiceExtension */,
 				221948E81D184A5700E9E4F6 /* Frameworks */,
 				221948AA1D17E7B400E9E4F6 /* Products */,
 			);
@@ -139,6 +172,7 @@
 			children = (
 				221948A91D17E7B400E9E4F6 /* CuddlePix.app */,
 				2242FF861D19896800D4ED0F /* ContentExtension.appex */,
+				221395FA1D1BDFB1005D2D8D /* ServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -221,6 +255,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		221395F91D1BDFB1005D2D8D /* ServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 221396021D1BDFB1005D2D8D /* Build configuration list for PBXNativeTarget "ServiceExtension" */;
+			buildPhases = (
+				221395F61D1BDFB1005D2D8D /* Sources */,
+				221395F71D1BDFB1005D2D8D /* Frameworks */,
+				221395F81D1BDFB1005D2D8D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ServiceExtension;
+			productName = ServiceExtension;
+			productReference = 221395FA1D1BDFB1005D2D8D /* ServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		221948A81D17E7B400E9E4F6 /* CuddlePix */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 221948BB1D17E7B400E9E4F6 /* Build configuration list for PBXNativeTarget "CuddlePix" */;
@@ -234,6 +285,7 @@
 			);
 			dependencies = (
 				2242FF911D19896800D4ED0F /* PBXTargetDependency */,
+				221396001D1BDFB1005D2D8D /* PBXTargetDependency */,
 			);
 			name = CuddlePix;
 			productName = CuddlePix;
@@ -267,6 +319,12 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Razeware;
 				TargetAttributes = {
+					221395F91D1BDFB1005D2D8D = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = D23W9URMHY;
+						DevelopmentTeamName = "Sam Davies";
+						ProvisioningStyle = Automatic;
+					};
 					221948A81D17E7B400E9E4F6 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = D23W9URMHY;
@@ -301,11 +359,20 @@
 			targets = (
 				221948A81D17E7B400E9E4F6 /* CuddlePix */,
 				2242FF851D19896800D4ED0F /* ContentExtension */,
+				221395F91D1BDFB1005D2D8D /* ServiceExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		221395F81D1BDFB1005D2D8D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				221396061D1BDFEF005D2D8D /* SampleRemoteCuddle.apns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		221948A71D17E7B400E9E4F6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -342,6 +409,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		221395F61D1BDFB1005D2D8D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				221395FD1D1BDFB1005D2D8D /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		221948A51D17E7B400E9E4F6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -365,6 +440,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		221396001D1BDFB1005D2D8D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 221395F91D1BDFB1005D2D8D /* ServiceExtension */;
+			targetProxy = 221395FF1D1BDFB1005D2D8D /* PBXContainerItemProxy */;
+		};
 		2242FF911D19896800D4ED0F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2242FF851D19896800D4ED0F /* ContentExtension */;
@@ -400,6 +480,30 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		221396031D1BDFB1005D2D8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ServiceExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.CuddlePix.ServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		221396041D1BDFB1005D2D8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ServiceExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.CuddlePix.ServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		221948B91D17E7B400E9E4F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -546,6 +650,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		221396021D1BDFB1005D2D8D /* Build configuration list for PBXNativeTarget "ServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				221396031D1BDFB1005D2D8D /* Debug */,
+				221396041D1BDFB1005D2D8D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		221948A41D17E7B400E9E4F6 /* Build configuration list for PBXProject "CuddlePix" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
