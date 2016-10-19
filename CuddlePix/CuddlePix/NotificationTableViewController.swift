@@ -107,25 +107,6 @@ extension NotificationTableViewController {
         group.leave()
       })
     }
-    
-    group.enter()
-    notificationCentre.getPendingNotificationRequests { (requests) in
-      let pendingRequestsProvider = PendingNotificationsTableSectionProvider(requests: requests, name: "Pending Notifications")
-      dataSaveQueue.async(execute: {
-        self.tableSectionProviders[.pending] = pendingRequestsProvider
-        group.leave()
-      })
-    }
-    
-    
-    group.enter()
-    notificationCentre.getDeliveredNotifications { (notifications) in
-      let deliveredNotificationsProvider = DeliveredNotificationsTableSectionProvider(notifications: notifications, name: "Delivered Notifications")
-      dataSaveQueue.async(execute: {
-        self.tableSectionProviders[.delivered] = deliveredNotificationsProvider
-        group.leave()
-      })
-    }
 
     group.notify(queue: DispatchQueue.main) {
       if let callback = callback {
